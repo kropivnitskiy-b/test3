@@ -1,0 +1,29 @@
+name: Deployment
+on:
+  push:
+    branches:
+      - test-vars
+env:
+  SEC_1: ${{ secrets.SECRET_1 }}
+jobs:
+  test:
+    env:
+      SEC_1: ${{ secrets.SECRET_1 }}
+      SEC_2: ${{ secrets.SECRET_2 }}
+    environment: testing
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output information
+        run: |
+          echo "SEC_1: ${{ env.SEC_1 }}"
+          echo "SEC_2: ${{ env.SEC_2 }}"
+  deploy:
+    env:
+      SEC_1: "updated_secret"
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output information
+        run: |        
+          echo "SEC_1: ${{ env.SEC_1 }}"
+          echo "SEC_2: ${{ env.SEC_2 }}"
