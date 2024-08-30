@@ -5,6 +5,7 @@ on:
       - test-vars
 env:
   SEC_1: ${{ secrets.SECRET_1 }}
+  SEC_3: ${{ secrets.SECRET_3 }}
 jobs:
   test:
     env:
@@ -17,6 +18,7 @@ jobs:
         run: |
           echo "SEC_1: ${{ env.SEC_1 }}"
           echo "SEC_2: ${{ env.SEC_2 }}"
+          echo "SEC_3: ${{ env.SEC_3 }}"
   deploy:
     env:
       SEC_1: "updated_secret"
@@ -27,3 +29,4 @@ jobs:
         run: |        
           echo "SEC_1: ${{ env.SEC_1 }}"
           echo "SEC_2: ${{ env.SEC_2 }}"
+          echo "SEC_3: ${{ env.SEC_3 }}"
